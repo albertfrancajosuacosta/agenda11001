@@ -78,41 +78,6 @@ def alterar_estado(agenda_id: int, estado_update: EstadoUpdate, db: Session = De
 ```
 
 
-
-
-
-@app.get("/")
-def root():
-```
-
-@app.post("/agendas/", response_model=AgendaCreate)
-def criar_agenda(agenda: AgendaCreate, db: Session = Depends(get_db)):
-
-
-@app.get("/agendas/")
-def listar_agendas(db: Session = Depends(get_db)):
-
-
-@app.get("/agendas/{agenda_id}")
-def obter_agenda(agenda_id: int, db: Session = Depends(get_db)):
-
-
-@app.put("/agendas/{agenda_id}")
-def atualizar_agenda(agenda_id: int, agenda_update: AgendaUpdate, db: Session = Depends(get_db)):
-
-
-@app.delete("/agendas/{agenda_id}")
-def deletar_agenda(agenda_id: int, db: Session = Depends(get_db)):
-
-@app.patch("/agendas/{agenda_id}/estado")
-def alterar_estado(agenda_id: int, estado_update: EstadoUpdate, db: Session = Depends(get_db)):
-
-
-
-
-
-
-
 # Backlog - Tarefas - Agenda-api
 
 
