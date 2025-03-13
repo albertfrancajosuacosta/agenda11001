@@ -4,6 +4,12 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Enum
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import datetime
+#from estadoagenda import EstadoAgenda
+#from agenda import Agenda
+#from agendacreate import AgendaCreate
+#from agendaupdate import AgendaUpdate
+#from estadoupdate import EstadoUpdate
+
 import enum
 
 # Definição do banco de dados SQLite
@@ -11,6 +17,7 @@ DATABASE_URL = "sqlite:///./agendas.db"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
 
 
 # Definição dos estados da agenda
@@ -70,10 +77,12 @@ def get_db():
 # Inicializando FastAPI
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return {"message": "Não é muito, mas é trabalho honesto."}
+
 # Rotas CRUD
 @app.post("/agendas/", response_model=AgendaCreate)
-
-
 def criar_agenda(agenda: AgendaCreate, db: Session = Depends(get_db)):
     nova_agenda = Agenda(**agenda.dict())
     db.add(nova_agenda)
@@ -87,9 +96,7 @@ def listar_agendas(db: Session = Depends(get_db)):
     #return 'oi'
     return db.query(Agenda).all()
 
-@app.get("/")
-def root():
-    return {"message": "Hello World"}
+
 
 @app.get("/agendas/{agenda_id}")
 def obter_agenda(agenda_id: int, db: Session = Depends(get_db)):
