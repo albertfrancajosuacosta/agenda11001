@@ -11,13 +11,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia o código do projeto para dentro do contêiner
-COPY main.py .
-COPY Dockerfile .
-COPY README.md .
-COPY requirements.txt .
+COPY . .
 
 # Expõe a porta da API
 EXPOSE 8000
 
-# Comando de execução
+# Comando de execução - Sem realod para a produção
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

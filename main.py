@@ -135,4 +135,3 @@ def alterar_estado(agenda_id: int, estado_update: EstadoUpdate, db: Session = De
     db.refresh(agenda)
     return agenda
 
-# Rodar API: `uvicorn main:app --reload`
